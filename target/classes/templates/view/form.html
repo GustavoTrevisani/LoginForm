@@ -1,16 +1,28 @@
-<html>
-<body>
-	<form action="/pagina-processa-dados-do-form" method="post">
-		<div>
-			<label for="name">Nome:</label> <input type="text" id="name" />
-		</div>
-		<div>
-			<label for="password">Password:</label> <input type="password"
-				id="password" />
-		</div>
-		<div class="button">
-			<button type="submit">Login</button>
-		</div>
-	</form>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Formulário de Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+	<body>
+	<h1>Form</h1>
+   <form action="#" method="post">
+    <div>
+        <label for="nome">Login:</label>
+        <input type="text" id="login" name="user_login" />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password" />
+    </div>
+    
+    
+    <div class="button">
+        <button type="submit">Login</button>
+    </div>
+</form>
 </body>
 </html>
+
+
