@@ -6,16 +6,16 @@ public class User {
 	private String password;
 	
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
 	public void setLogin(String login) {
-		login = login;
+		this.login = login;
 	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
-		password = password;
+		this.password = password;
 	}
 }
 	

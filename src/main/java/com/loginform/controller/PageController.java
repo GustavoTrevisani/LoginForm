@@ -14,8 +14,7 @@ import com.loginform.user.User;
 @Controller
 public class PageController {
 	
-	private User user;
-
+	
 	@GetMapping("/login")
 	public String form(Model model) {
 		model.addAttribute("dadosDoFormulario", new User());
