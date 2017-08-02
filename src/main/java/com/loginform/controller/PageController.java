@@ -13,19 +13,24 @@ import com.loginform.user.User;
 
 @Controller
 public class PageController {
+	
+	private User user;
 
 	@GetMapping("/login")
 	public String form(Model model) {
-		model.addAttribute(new User());
+		model.addAttribute("dadosDoFormulario", new User());
 		System.out.println("Getmap");
 		return "view/form";
 
 	}
 	
-	@PostMapping("/login")
-	public String result(Model model) {		
-		System.out.println("Postmap");
-		return "view/form";
-	}
+	@PostMapping("/loginAction")
+    public String recebeRequisicao(@ModelAttribute User dadosDoFormulario) {
+        System.out.println(dadosDoFormulario.getLogin());
+        System.out.println(dadosDoFormulario.getPassword());
+        return "view/result";
+    }
+	
+	
 
 }

@@ -7,14 +7,14 @@
 
 	<body>
 	<h1>Form</h1>
-   <form action="#" method="post">
+   <form action="#" th:action="@{/loginAction}" th:object="${dadosDoFormulario}" method="post">
     <div>
         <label for="nome">Login:</label>
-        <input type="text" id="login" name="user_login" />
+        <input type="text" th:field="*{login}" />
     </div>
     <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="user_password" />
+        <input type="password" th:field="*{password}" />
     </div>
     
     

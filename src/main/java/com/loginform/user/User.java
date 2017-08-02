@@ -1,23 +1,21 @@
 package com.loginform.user;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class User {
 	
-	private String Login;
-	private Integer Password;
+	private String login;
+	private String password;
+	
 	public String getLogin() {
-		return Login;
+		return login;
 	}
 	public void setLogin(String login) {
-		Login = login;
+		login = login;
 	}
-	public Integer getPassword() {
-		return Password;
+	public String getPassword() {
+		return password;
 	}
-	public void setPassword(Integer password) {
-		Password = password;
+	public void setPassword(String password) {
+		password = password;
 	}
 }
 	
