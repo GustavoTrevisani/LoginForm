@@ -16,6 +16,11 @@ public class PageController {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@GetMapping("/loggedIn")
+	public String loggedInPage(Model model) {
+		return "view/loggedIn";
+	}
 
 	@GetMapping("/main")
 	public String mainPage(Model model) {

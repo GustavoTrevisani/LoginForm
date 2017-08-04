@@ -7,7 +7,7 @@
 
 	<body>
 	<h1>Login</h1>
-   <form action="#" th:action="@{/loginAction}" th:object="${dadosDoFormulario}" method="post">
+   <form action="#" th:action="@{/loggedIn}" th:object="${dadosDoFormulario}" >
     <div>
         <label for="nome">Login:</label>
         <input type="text" th:field="*{login}" />
