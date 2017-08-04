@@ -1,10 +1,9 @@
 package com.loginform.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loginform.dao.UserRepository;
@@ -27,6 +26,12 @@ public class TestController {
 	@GetMapping("/list-user")
 	public String listUser() {
 		StringBuffer b = new StringBuffer();
+		for(User u: userRepo.findAll()) {
+			b.append(u.toString()).append("\n");
+		}
+		return b.toString();
+		
+	}
 		
 //		List<User> listaDeUser = (List<User>) userRepo.findAll();
 //		for(int i = 0; i< listaDeUser.size(); i++) {
@@ -35,12 +40,6 @@ public class TestController {
 //			b.append("\n");
 //		
 //		}
-		for(User u: userRepo.findAll()) {
-			b.append(u.toString()).append("\n");
-		}
-		return b.toString();
-				
-	}
 
 
 }

@@ -5,23 +5,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
-	<body>
-	<h1>Form</h1>
-   <form action="#" th:action="@{/registered}" th:object="${dadosDoFormulario}" method="post">
-    <div>
-        <label for="nome">Login:</label>
-        <input type="text" th:field="*{login}" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" th:field="*{password}" />
-    </div>
-    
-    
-    <div class="button">
-        <button type="submit">Register</button>
-    </div>
-</form>
+<body>
+	<h1>Cadastro de Usuário</h1>
+	<form action="#" th:action="@{/registered}"
+		th:object="${dadosDoFormulario}" method="post">
+
+		<div>
+			<label for="nome">Login:</label> <input type="text"
+				th:field="*{login}" />
+		</div>
+
+		<div>
+			<label for="password">Password:</label> <input type="password"
+				th:field="*{password}" />
+		</div>
+
+		<div class="button">
+			<button type="submit">Register</button>
+		</div>
+	</form>
 </body>
 </html>
 

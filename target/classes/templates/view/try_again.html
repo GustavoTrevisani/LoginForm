@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Usuário Já Cadastrado</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" th:action="@{/register}">
+
+		<div>
+			<p th:text="${msgCadastro}" />
+		</div>
+		
+		<div class="button">
+			<button type="submit">Try Again</button>
+		</div>
+	
+	</form>
+</body>
+</html>

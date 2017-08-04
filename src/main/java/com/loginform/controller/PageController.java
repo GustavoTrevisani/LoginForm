@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.loginform.dao.UserRepository;
 import com.loginform.user.User;
+import com.loginform.verificador.Verificador;
 
 @Controller
 public class PageController {
@@ -16,6 +17,11 @@ public class PageController {
 	@Autowired
 	private UserRepository userRepo;
 
+	@GetMapping("/main")
+	public String mainPage(Model model) {
+		return "view/main";
+	}
+	
 	@GetMapping("/register")
 	public String formCadastro(Model model) {
 		model.addAttribute("dadosDoFormulario", new User());
@@ -30,11 +36,19 @@ public class PageController {
 
 	@PostMapping("/registered")
 	public String recebeRequisicao(@ModelAttribute User dadosDoFormulario, Model model) {
-		String msg = "teste";		
-		userRepo.save(new User(dadosDoFormulario.getLogin(), dadosDoFormulario.getPassword()));
+		String view;
+		String msg = "Cadastro efetuado com sucesso.";			
+		String loginCadastrado = dadosDoFormulario.getLogin();
+		String loginExistente = userRepo.findAll().toString();	
 		model.addAttribute("msgCadastro", msg);
-		return "view/result";
-
+		if (Verificador.verify(loginCadastrado, loginExistente)){
+			msg = "Já existe um USUÁRIO cadastrando com este LOGIN!";	
+			view = "view/try_again";
+		}else {
+		userRepo.save(new User(dadosDoFormulario.getLogin(), dadosDoFormulario.getPassword()));
+		view = "view/registered";
+		}
+		return view;
 	}
 
 }
