@@ -1,6 +1,5 @@
 package com.loginform.user;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +11,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	//@Column(unique=true)
+	// @Column(unique=true)
 	private String login;
 	private String password;
 

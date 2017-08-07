@@ -1,5 +1,7 @@
 package com.loginform.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +19,9 @@ public class PageController {
 	@Autowired
 	private UserRepository userRepo;
 	
-	@GetMapping("/loggedIn")
-	public String loggedInPage(Model model) {
-		return "view/loggedIn";
-	}
-
-	@GetMapping("/main")
-	public String mainPage(Model model) {
-		return "view/main";
+	@GetMapping("/home")
+	public String homePage(Model model) {
+		return "view/home";
 	}
 	
 	@GetMapping("/register")
@@ -32,28 +29,66 @@ public class PageController {
 		model.addAttribute("dadosDoFormulario", new User());
 		return "view/register";
 	}
-
-	@GetMapping("/login")
-	public String formlogin(Model model) {
-		model.addAttribute("dadosDoFormulario", new User());
-		return "view/login";
-	}
-
+		
 	@PostMapping("/registered")
 	public String recebeRequisicao(@ModelAttribute User dadosDoFormulario, Model model) {
 		String view;
 		String msg = "Cadastro efetuado com sucesso.";			
 		String loginCadastrado = dadosDoFormulario.getLogin();
 		String loginExistente = userRepo.findAll().toString();	
-		model.addAttribute("msgCadastro", msg);
-		if (Verificador.verify(loginCadastrado, loginExistente)){
+		if (Verificador.verifyLoginDuplicity(loginCadastrado, loginExistente)){
 			msg = "Já existe um USUÁRIO cadastrando com este LOGIN!";	
-			view = "view/try_again";
+			view = "view/try_register_again";
+			model.addAttribute("msgCadastro", msg);
 		}else {
-		userRepo.save(new User(dadosDoFormulario.getLogin(), dadosDoFormulario.getPassword()));
-		view = "view/registered";
+			userRepo.save(new User(dadosDoFormulario.getLogin(), dadosDoFormulario.getPassword()));
+			model.addAttribute("msgCadastro", msg);
+			view = "view/registered";
 		}
 		return view;
 	}
+
+	@GetMapping("/login")
+	public String formlogin(Model model) {
+		model.addAttribute("dadosDoFormulario", new User());
+		return "view/login";
+	}
+	
+	@PostMapping("/loggedIn")
+	public String metodoTeste(@ModelAttribute User dadosDoFormulario, Model model) {
+		List<User> users = userRepo.findByLoginAndPassword(dadosDoFormulario.getLogin(), dadosDoFormulario.getPassword());
+		if(users.size() > 0) {
+			return "view/user_home";
+		} else {
+			model.addAttribute("dadosDoFormulario", new User());
+			model.addAttribute("msg", "Erro no login ou senha, tente novmente");
+			return "view/login";
+		}
+	/*
+	@PostMapping("/loggedIn")
+	public String metodoTeste(@ModelAttribute User dadosDoFormulario, Model model) {
+		String msg = "Cadastro efetuado com sucesso.";			
+		String loginCadastrado = dadosDoFormulario.getLogin();
+		String loginExistente = userRepo.findAll().toString();
+		String passwordCadastrado = dadosDoFormulario.getPassword();
+		String passwordExistente = userRepo.findAll().toString();
+		String view;
+		if (Verificador.verifyLoginMatch(loginCadastrado, loginExistente, passwordCadastrado , passwordExistente)){
+			msg = "Logado com Sucesso";				
+			model.addAttribute("msgCadastro", msg);
+			view = "view/user_home";
+		}else {
+		view = "view/try_login_again";
+		}
+		
+		return view;
+	}
+	*/
+	
+	}
+	
+	
+
+
 
 }
