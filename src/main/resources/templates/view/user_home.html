@@ -6,7 +6,30 @@
 </head>
 
 	<body>
-	<h1>Logado com Sucesso</h1>
+	<h1>Todo List</h1>
+	<span th:text="${taskList}" th:remove="tag">title</span>
+	<form action="#" th:action="@{/tasks}"
+		th:object="${task}" method="POST">
+		<h1>Inserir Tarefa</h1>
+		<div>
+			<label for="task">Tarefa:</label> <input type="text"
+				th:field="*{task}" />
+		</div>
+		
+		<div>
+			<label for="data de inicio">Data de Início:</label> <input type="text"
+				th:field="*{beginDate}" />
+		</div>
+		
+		<div>
+			<label for="data de conclusao">Data de Conclusão:</label> <input type="text"
+				th:field="*{endDate}" />
+		</div>
+		
+		<div class="button">
+			<button type="submit">Inserir</button>
+		</div>
+	</form>
    
 </body>
 </html>
